@@ -1,0 +1,353 @@
+;-------------------------------------------------------------------------------
+;	V A R I A B L E S
+;-------------------------------------------------------------------------------
+
+[colors]
+background = #2e3440
+background-alt = #333
+transparent-bg = #002e3440
+
+foreground = #D8DEE9
+foreground-alt = #ee3333
+
+; Switch fg/bg for light wp
+; background = #d8dee9
+; foreground = #2e3440
+
+; Polar Night 
+nord0 = #2e3440 
+nord1 = #3b4252 
+nord2 = #434c5e 
+nord3 = #4c566a 
+
+; Snow Storm 
+nord4 = #d8dee9 
+nord5 = #e5e9f0 
+nord6 = #eceff4 
+
+; Frost 
+nord7 = #8fbcbb 
+nord8 = #88c0d0 
+nord9 = #81a1c1 
+nord10 = #5e81ac 
+
+; Aurora
+nord11 = #bf616a 
+nord12 = #d08770 
+nord13 = #ebcb8b 
+nord14 = #a3be8c 
+nord15 = #b48ead 
+
+
+;-------------------------------------------------------------------------------
+;	B A R S
+;-------------------------------------------------------------------------------
+
+[bar/rows]
+monitor = eDP-1
+width = 1890
+height = 24
+offset-x = 14
+offset-y = 5
+override-redirect = true
+wm-restack = i3
+radius = 0
+
+background = ${colors.transparent-bg}
+foreground = ${colors.foreground}
+
+line-size = 2
+line-color = #fff
+
+border-size = 0
+border-color = #131313
+
+padding-left = 0
+padding-right = 0
+
+font-0 = "FantasqueSansMono Nerd Font Mono:style=Regular:pixelsize=11;3"
+font-1 = "FantasqueSansMono Nerd Font Mono:style=Regular:pixelsize=14;3"
+font-2 = "Iosevka Nerd Font:style=Regular:pixelsize=11;3"
+
+modules-left = bspwm bspwm_no title
+modules-right = cpu memory backlight pulseaudio battery wlan date
+
+tray-position = none 
+tray-background = ${colors.transparent-bg}
+tray-padding = 10
+tray-maxsize = 10
+
+;-------------------------------------------------------------------------------
+;	D E C O R A T I O N S
+;-------------------------------------------------------------------------------
+
+[margin]
+;Allow padding of modules while keeping the formatted background colour we've set
+type = custom/text
+content = "  "
+
+[margintiny]
+;Allow padding of modules while keeping the formatted background colour we've set
+type = custom/text
+content = " "
+
+;-------------------------------------------------------------------------------
+;	M O D U L E S
+;-------------------------------------------------------------------------------
+
+[module/title]
+type = internal/xwindow
+format = <label>
+format-padding = 1
+label = "- %title%"
+label-maxlen = 100
+
+
+
+
+
+
+
+[module/bspwm_no]
+type = internal/bspwm
+
+ws-icon-0 = 1;I
+ws-icon-1 = 2;II
+ws-icon-2 = 3;III
+ws-icon-3 = 4;IV
+ws-icon-4 = 5;V
+ws-icon-5 = 6;VI
+ws-icon-6 = 7;VII
+ws-icon-7 = 8;VIII
+
+; Only show workspaces on the same output as the bar
+pin-workspaces = true
+
+; focused = Active workspace on focused monitor
+label-focused = " %icon% "
+label-focused-foreground = ${colors.foreground}
+label-focused-background = ${colors.transparent-bg}
+
+; unfocused = Empty workspace on any monitor
+label-empty = 
+label-empty-foreground = ${colors.foreground}
+label-empty-background = ${colors.transparent-bg}
+
+; inactive = Inactive workspace on any monitor
+label-occupied = 
+label-occupied-foreground = ${colors.foreground}
+label-occupied-background = ${colors.transparent-bg}
+
+; visible = Active workspace on unfocused monitor
+label-visible = 
+label-visible-foreground = ${colors.foreground}
+label-visible-background = ${colors.transparent-bg}
+
+; urgent = Workspace with urgency hint set
+label-urgent = 
+label-urgent-foreground = ${colors.nord11}
+label-urgent-background = ${colors.transparent-bg}
+
+
+
+
+
+
+[module/bspwm]
+type = internal/bspwm
+
+index-sort = true
+enable-click = true
+enable-scroll = true
+
+; Only show workspaces on the same output as the bar
+pin-workspaces = true
+
+; focused = Active workspace on focused monitor
+label-focused = ""
+label-focused-font = 2
+label-focused-padding = 1
+label-focused-foreground = ${colors.foreground}
+label-focused-background = ${colors.transparent-bg}
+
+; unfocused = Empty workspace on any monitor
+label-empty = 
+label-empty-foreground = ${colors.foreground}
+label-empty-background = ${colors.transparent-bg}
+
+; inactive = Inactive workspace on any monitor
+label-occupied = "  "
+label-occupied-font = 2
+label-occupied-foreground = ${colors.foreground}
+label-occupied-background = ${colors.transparent-bg}
+
+; visible = Active workspace on unfocused monitor
+label-visible = "  "
+label-visible-font = 2
+label-visible-foreground = ${colors.foreground}
+label-visible-background = ${colors.transparent-bg}
+
+; urgent = Workspace with urgency hint set
+label-urgent = "  "
+label-urgent-font = 2
+label-urgent-foreground = ${colors.nord11}
+label-urgent-background = ${colors.transparent-bg}
+
+
+
+
+
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+
+label-padding = 2
+label = "%{T2}%{T-} %percentage%%"
+label-foreground = ${colors.foreground}
+label-background = ${colors.transparent-bg}
+
+
+
+
+
+
+[module/memory]
+type = internal/memory
+interval = 2
+
+label-padding = 2
+label = "%{T2}%{T-} %percentage_used%%"
+label-foreground = ${colors.foreground}
+label-background = ${colors.transparent-bg}
+
+
+
+
+
+
+
+[module/backlight]
+type = internal/backlight
+card = intel_backlight
+
+label-padding = 2
+label = " %percentage%%"
+
+
+
+
+
+
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+sink = alsa_output.pci-0000_00_00.3.analog-stereo
+use-ui-max = false 
+
+interval = 5
+
+label-volume-padding = 2
+label-volume = "%{T2}%{T-} %percentage%%"
+
+label-muted-padding = 2
+label-muted = "%{T2}%{T-} 0%"
+
+
+
+
+
+
+
+[module/wlan]
+type = internal/network
+interface = wlp82s0
+interval = 3.0
+
+label-connected-padding = 4
+label-connected = "%{T2}直%{T-} %essid%"
+label-connected-foreground = ${colors.foreground}
+label-connected-background = ${colors.transparent-bg}
+label-connected-maxlen = 30
+
+label-disconnected-padding = 4
+label-disconnected = "%{T2}睊%{T-} N/A"
+label-disconnected-foreground = ${colors.foreground}
+label-disconnected-background = ${colors.transparent-bg}
+
+
+
+
+
+
+
+[module/date]
+type = internal/date
+interval = 5
+
+time-alt = %A, %d %B %Y
+time = %H:%M
+
+label-padding = 2
+label = "%{T2}%{T-} %time%"
+label-foreground = ${colors.foreground}
+label-background = ${colors.transparent-bg}
+
+
+
+
+
+
+[module/battery]
+type = internal/battery
+full-at = 99
+time-format = %H:%M
+battery = BAT0
+adapter = AC
+
+format-charging = <animation-charging> <label-charging>
+format-charging-padding = 2
+label-charging = %percentage%%
+
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-padding = 2
+label-discharging = %percentage%%
+
+format-full = <label-full>
+format-full-prefix = ""
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+ramp-capacity-0-foreground = ${colors.nord11}
+ramp-capacity-foreground   = ${colors.foreground}
+bar-capacity-width = 10
+
+animation-charging-0 = ""
+animation-charging-1 = ""
+animation-charging-2 = ""
+animation-charging-3 = ""
+animation-charging-4 = ""
+
+animation-charging-framerate = 750
+
+
+
+
+
+
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+
+[global/wm]
+;margin-top = 5
+;margin-bottom = 5
