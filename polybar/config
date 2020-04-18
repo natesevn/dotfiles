@@ -65,11 +65,10 @@ border-color = #131313
 padding-left = 0
 padding-right = 0
 
-font-0 = "FantasqueSansMono Nerd Font Mono:style=Regular:pixelsize=11;3"
-font-1 = "FantasqueSansMono Nerd Font Mono:style=Regular:pixelsize=14;3"
-font-2 = "Iosevka Nerd Font:style=Regular:pixelsize=11;3"
+font-0 = "FantasqueSansMono Nerd Font:style=Regular:pixelsize=11;3"
+font-1 = "Iosevka Nerd Font:style=Regular:pixelsize=11;3"
 
-modules-left = bspwm bspwm_no title
+modules-left = i3 i3_no title
 modules-right = cpu memory backlight pulseaudio battery wlan date
 
 tray-position = none 
@@ -108,8 +107,12 @@ label-maxlen = 100
 
 
 
-[module/bspwm_no]
-type = internal/bspwm
+[module/i3_no]
+type = internal/i3
+label-focused = " %icon%"
+label-unfocused = 
+label-visible = 
+label-urgent = 
 
 ws-icon-0 = 1;I
 ws-icon-1 = 2;II
@@ -120,76 +123,48 @@ ws-icon-5 = 6;VI
 ws-icon-6 = 7;VII
 ws-icon-7 = 8;VIII
 
-; Only show workspaces on the same output as the bar
-pin-workspaces = true
-
-; focused = Active workspace on focused monitor
-label-focused = " %icon% "
-label-focused-foreground = ${colors.foreground}
-label-focused-background = ${colors.transparent-bg}
-
-; unfocused = Empty workspace on any monitor
-label-empty = 
-label-empty-foreground = ${colors.foreground}
-label-empty-background = ${colors.transparent-bg}
-
-; inactive = Inactive workspace on any monitor
-label-occupied = 
-label-occupied-foreground = ${colors.foreground}
-label-occupied-background = ${colors.transparent-bg}
-
-; visible = Active workspace on unfocused monitor
-label-visible = 
-label-visible-foreground = ${colors.foreground}
-label-visible-background = ${colors.transparent-bg}
-
-; urgent = Workspace with urgency hint set
-label-urgent = 
-label-urgent-foreground = ${colors.nord11}
-label-urgent-background = ${colors.transparent-bg}
 
 
 
 
 
 
-[module/bspwm]
-type = internal/bspwm
+[module/i3]
+type = internal/i3
 
 index-sort = true
 enable-click = true
 enable-scroll = true
 
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8;
+
 ; Only show workspaces on the same output as the bar
 pin-workspaces = true
 
 ; focused = Active workspace on focused monitor
-label-focused = ""
-label-focused-font = 2
-label-focused-padding = 1
+label-focused = "  "
 label-focused-foreground = ${colors.foreground}
 label-focused-background = ${colors.transparent-bg}
 
-; unfocused = Empty workspace on any monitor
-label-empty = 
-label-empty-foreground = ${colors.foreground}
-label-empty-background = ${colors.transparent-bg}
-
-; inactive = Inactive workspace on any monitor
-label-occupied = "  "
-label-occupied-font = 2
-label-occupied-foreground = ${colors.foreground}
-label-occupied-background = ${colors.transparent-bg}
+; unfocused = Inactive workspace on any monitor
+label-unfocused = " %icon% "
+label-unfocused-foreground = ${colors.foreground}
+label-unfocused-background = ${colors.transparent-bg}
 
 ; visible = Active workspace on unfocused monitor
-label-visible = "  "
-label-visible-font = 2
+label-visible = "  "
 label-visible-foreground = ${colors.foreground}
 label-visible-background = ${colors.transparent-bg}
 
 ; urgent = Workspace with urgency hint set
-label-urgent = "  "
-label-urgent-font = 2
+label-urgent = "  "
 label-urgent-foreground = ${colors.nord11}
 label-urgent-background = ${colors.transparent-bg}
 
@@ -203,7 +178,7 @@ type = internal/cpu
 interval = 2
 
 label-padding = 2
-label = "%{T2}%{T-} %percentage%%"
+label = " %percentage%%"
 label-foreground = ${colors.foreground}
 label-background = ${colors.transparent-bg}
 
@@ -217,7 +192,7 @@ type = internal/memory
 interval = 2
 
 label-padding = 2
-label = "%{T2}%{T-} %percentage_used%%"
+label = " %percentage_used%%"
 label-foreground = ${colors.foreground}
 label-background = ${colors.transparent-bg}
 
@@ -249,10 +224,10 @@ use-ui-max = false
 interval = 5
 
 label-volume-padding = 2
-label-volume = "%{T2}%{T-} %percentage%%"
+label-volume =  %percentage%%
 
 label-muted-padding = 2
-label-muted = "%{T2}%{T-} 0%"
+label-muted =  0%
 
 
 
@@ -266,13 +241,13 @@ interface = wlp82s0
 interval = 3.0
 
 label-connected-padding = 4
-label-connected = "%{T2}直%{T-} %essid%"
+label-connected = "直 %essid%"
 label-connected-foreground = ${colors.foreground}
 label-connected-background = ${colors.transparent-bg}
 label-connected-maxlen = 30
 
 label-disconnected-padding = 4
-label-disconnected = "%{T2}睊%{T-} N/A"
+label-disconnected = "睊 N/A"
 label-disconnected-foreground = ${colors.foreground}
 label-disconnected-background = ${colors.transparent-bg}
 
@@ -290,7 +265,7 @@ time-alt = %A, %d %B %Y
 time = %H:%M
 
 label-padding = 2
-label = "%{T2}%{T-} %time%"
+label = " %time%"
 label-foreground = ${colors.foreground}
 label-background = ${colors.transparent-bg}
 
@@ -349,5 +324,5 @@ screenchange-reload = true
 ;compositing-border = over
 
 [global/wm]
-;margin-top = 5
-;margin-bottom = 5
+margin-top = 5
+margin-bottom = 5
