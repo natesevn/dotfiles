@@ -100,7 +100,7 @@ super + Return
 
 # program launcher
 super + d
-	rofi -show run	
+	rofi -show drun	
 
 
 

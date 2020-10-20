@@ -36,5 +36,6 @@ bspc config normal_frame_opacity 0.0
 bspc config focused_frame_opacity 0.1
 
 # Window Rules
+bspc rule -a Chromium desktop='^2'
 bspc rule -a Firefox desktop='^2'
 bspc rule -a kitty desktop='^1'
